@@ -132,12 +132,22 @@
 
     /* Diferenciais: círculos azuis como os destaques do Instagram */
     .difs{background:#fff;border-block:1px solid var(--linha);padding:24px 0}
-    .difs ul{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style:none;margin:0;padding:0}
+    .difs ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;list-style:none;margin:0;padding:0}
     .dif{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
-    .dif-ico{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--azul);color:#fff;
+    .dif-ico{display:grid;place-items:center;width:clamp(48px,14vw,60px);height:clamp(48px,14vw,60px);border-radius:50%;background:var(--azul);color:#fff;
       outline:2px solid var(--azul);outline-offset:3px}
-    .dif-ico .ico{width:30px;height:30px}
-    .dif-txt{font:600 .85rem/1.2 var(--f-titulo);color:var(--marinho);max-width:13ch}
+    .dif-ico .ico{width:55%;height:55%}
+    .dif-txt{font:600 clamp(.72rem,3.3vw,.85rem)/1.2 var(--f-titulo);color:var(--marinho);max-width:100%}
+    @media (max-width:599px){
+      .difs ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px}
+      .dif{flex-direction:row;text-align:left;gap:8px;min-width:0}
+      .dif-ico{width:40px;height:40px;flex:none;outline-offset:2px}
+      .dif-txt{min-width:0;font-size:clamp(.74rem,3.5vw,.9rem)}
+    }
+    @media (max-width:359px){
+      .difs ul{grid-template-columns:1fr;gap:12px}
+      .dif-txt{font-size:.95rem}
+    }
 
     /* Botão flutuante do WhatsApp (única sombra: ele fica acima do conteúdo) */
     .whats-flutuante{position:fixed;right:16px;bottom:16px;z-index:60;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;
@@ -163,9 +173,9 @@
     }
   </style>
   <!-- Resto do CSS sem bloquear a renderização -->
-  <link rel="preload" href="style.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="style.css?v=2"></noscript>
-  <script src="script.js?v=2" defer></script>
+  <link rel="preload" href="style.css?v=5" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css?v=5"></noscript>
+  <script src="script.js?v=5" defer></script>
 
   <!-- Dados estruturados (gerados a partir do CONFIG pelo ferramentas/pre-render.js) -->
   <script type="application/ld+json" id="dados-estruturados">
