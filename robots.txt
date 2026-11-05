@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /ferramentas/
 
-Sitemap: https://petbalyen.pages.dev/sitemap.xml
+Sitemap: https://petshop-balyen.pages.dev/sitemap.xml

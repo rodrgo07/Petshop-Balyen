@@ -6,7 +6,7 @@
   <!-- SEO: título, descrição e URL são atualizados pelo ferramentas/pre-render.js a partir do CONFIG -->
   <title>Pet Balyen | Banho e Tosa em Cotia – SP | Leva e Traz</title>
   <meta name="description" content="Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!">
-  <link rel="canonical" href="https://petbalyen.pages.dev/">
+  <link rel="canonical" href="https://petshop-balyen.pages.dev/">
   <meta name="theme-color" content="#1537B0">
 
   <!-- Ícones -->
@@ -21,15 +21,15 @@
   <meta property="og:site_name" content="Pet Balyen">
   <meta property="og:title" content="Pet Balyen | Banho e Tosa em Cotia – SP | Leva e Traz">
   <meta property="og:description" content="Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!">
-  <meta property="og:url" content="https://petbalyen.pages.dev/">
-  <meta property="og:image" content="https://petbalyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg">
+  <meta property="og:url" content="https://petshop-balyen.pages.dev/">
+  <meta property="og:image" content="https://petshop-balyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Logo da Pet Balyen e cachorro de olhos azuis com laço rosa: banho e tosa em Cotia">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pet Balyen | Banho e Tosa em Cotia – SP | Leva e Traz">
   <meta name="twitter:description" content="Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!">
-  <meta name="twitter:image" content="https://petbalyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg">
+  <meta name="twitter:image" content="https://petshop-balyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg">
 
   <!-- Fontes auto-hospedadas (sem chamadas a terceiros). Só a do título é pré-carregada. -->
   <link rel="preload" href="assets/fonts/baloo2-800.woff2" as="font" type="font/woff2" crossorigin>
@@ -63,8 +63,9 @@
       --f-titulo:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
       --f-mao:"Dancing Script","Segoe Script",cursive;
       --f-texto:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-      --raio:28px;
-      --sombra:0 10px 30px -12px rgba(20,33,94,.28);
+      --raio:10px;            /* fotos e mídias */
+      --raio-sm:4px;          /* painéis e campos */
+      --linha:rgba(20,33,94,.16);
       --foco:var(--marinho);
     }
     *,*::before,*::after{box-sizing:border-box}
@@ -72,90 +73,88 @@
     body{margin:0;background:var(--rosa-50);color:var(--texto);font:400 1rem/1.6 var(--f-texto);overflow-x:hidden}
     img,svg,video{display:block;max-width:100%}
     img{height:auto}
-    h1,h2,h3{font-family:var(--f-titulo);color:var(--marinho);line-height:1.12;margin:0 0 .5em;font-weight:800;text-wrap:balance}
+    h1,h2,h3{font-family:var(--f-titulo);color:var(--marinho);line-height:1.05;margin:0 0 .45em;font-weight:800;text-wrap:balance}
+    h3{line-height:1.2}
     p{margin:0 0 1em}
     a{color:var(--azul)}
-    :focus-visible{outline:3px solid var(--foco);outline-offset:3px;border-radius:8px}
-    .container{width:100%;max-width:1140px;margin-inline:auto;padding-inline:20px}
+    :focus-visible{outline:3px solid var(--foco);outline-offset:3px;border-radius:2px}
+    .container{width:100%;max-width:1160px;margin-inline:auto;padding-inline:20px}
     [hidden]{display:none!important}
     .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .pular{position:absolute;left:12px;top:-60px;z-index:100;background:var(--marinho);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;transition:transform .2s}
-    .pular:focus{transform:translateY(72px)}
+    .pular{position:absolute;left:12px;top:-60px;z-index:100;background:var(--marinho);color:#fff;padding:12px 18px;font-weight:700}
+    .pular:focus{top:12px}
     .ico{width:1.4em;height:1.4em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-    /* Botões em pílula (como o "Agende já" dos posts) */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:48px;padding:.7em 1.5em;border:0;border-radius:999px;
+    /* Botões em pílula (o "Agende já" dos posts): sólidos, sem sombra */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:48px;padding:.7em 1.5em;border:2px solid var(--azul);border-radius:999px;
       background:var(--azul);color:#fff;font:600 1.0625rem/1.2 var(--f-titulo);text-decoration:none;text-align:center;cursor:pointer;
-      box-shadow:0 5px 0 var(--marinho);transition:transform .15s ease,box-shadow .15s ease}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--marinho)}
-    .btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--marinho)}
-    .btn--lg{min-height:58px;font-size:1.2rem;padding:.8em 1.8em}
-    .btn--contorno{background:#fff;color:var(--azul);box-shadow:0 5px 0 var(--rosa-300);border:2px solid var(--azul)}
-    .btn--contorno:hover{box-shadow:0 7px 0 var(--rosa-300)}
+      transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+    .btn:hover{background:var(--azul-escuro);border-color:var(--azul-escuro)}
+    .btn:active{transform:translateY(1px)}
+    .btn--lg{min-height:56px;font-size:1.15rem;padding:.8em 1.7em}
+    .btn--contorno{background:transparent;color:var(--azul)}
+    .btn--contorno:hover{background:var(--azul);color:#fff}
     .microtexto{font-size:.9rem;color:var(--texto-suave);margin:.9em 0 0}
 
-    /* Cabeçalho fixo: só logo + botão (sem menu hambúrguer) */
+    /* Cabeçalho fixo: só logo + nome + botão (sem menu hambúrguer) */
     #topo-sentinela{position:absolute;top:0;left:0;width:1px;height:30px;pointer-events:none}
-    .cabecalho{position:sticky;top:0;z-index:50;background:rgba(255,245,247,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:box-shadow .25s}
+    .cabecalho{position:sticky;top:0;z-index:50;background:var(--rosa-50);border-bottom:1px solid transparent;transition:border-color .2s}
     .cabecalho .container{display:flex;align-items:center;justify-content:space-between;height:72px}
-    .cabecalho-logo{display:flex;align-items:center;gap:10px;text-decoration:none;border-radius:12px}
+    .cabecalho-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
     .marca-nome{font:800 1.6rem/1 var(--f-titulo);color:var(--marinho);white-space:nowrap}
     @media (max-width:380px){.cabecalho .marca-nome{font-size:1.3rem}}
-    .cabecalho-logo img{width:62px;height:auto;transform-origin:left center;transition:transform .25s}
+    .cabecalho-logo img{width:62px;height:auto;transform-origin:left center;transition:transform .2s}
     .cabecalho .btn{min-height:44px;padding:.5em 1.2em;font-size:1rem}
-    .cabecalho.is-compacto{box-shadow:0 6px 20px -10px rgba(20,33,94,.35)}
+    .cabecalho.is-compacto{border-bottom-color:var(--linha)}
     .cabecalho.is-compacto .cabecalho-logo img{transform:scale(.8)}
 
     /* Hero */
-    .hero{position:relative;overflow:hidden;padding:4px 0 48px}
+    .hero{position:relative;padding:4px 0 48px}
     .hero-grid{position:relative;display:grid;gap:12px;align-items:center}
     .hero-foto{order:-1;position:relative;width:min(60vw,250px);margin:6px auto 4px;aspect-ratio:1}
     .hero-foto::before{content:"";position:absolute;inset:-4%;background:var(--azul);clip-path:url(#nuvem)}
     .hero-foto::after{content:"";position:absolute;inset:-1.5%;background:#fff;clip-path:url(#nuvem)}
     .hero-foto picture{position:relative;z-index:1;display:block;width:100%;height:100%}
     .hero-foto img{width:100%;height:100%;object-fit:cover;clip-path:url(#nuvem)}
-    .hero-pato{position:absolute;z-index:2;width:22%;right:-2%;top:2%;animation:boiar 4s ease-in-out infinite}
-    .hero-local{display:inline-flex;align-items:center;gap:.35em;font-weight:600;color:var(--azul);font-size:.95rem;margin:0 0 .4em}
+    .hero-pato{position:absolute;z-index:2;width:22%;right:-2%;top:2%}
+    .hero-local{display:inline-flex;align-items:center;gap:.35em;font-weight:600;color:var(--azul);font-size:.95rem;margin:0 0 .5em}
     .hero-local .ico{width:1.15em;height:1.15em}
-    .hero h1{font-size:clamp(1.95rem,7.4vw,3.6rem);margin-bottom:.3em;letter-spacing:-.01em}
-    .hero h1 em{font-style:normal;color:var(--azul)}
+    .hero h1{font-size:clamp(2.1rem,8vw,4rem);margin-bottom:.3em;letter-spacing:-.02em}
     .hero-sub{font-size:1.125rem;color:var(--texto-suave);max-width:34ch}
-    .selos{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 20px;padding:0}
-    .selo{display:inline-flex;align-items:center;gap:.4em;background:#fff;border:2px solid var(--rosa-300);color:var(--marinho);font:600 .95rem/1 var(--f-titulo);padding:.55em 1em;border-radius:999px}
-    .hero-ctas{display:flex;flex-wrap:wrap;gap:14px 12px}
+    .selos{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 22px;padding:0}
+    .selo{display:inline-flex;align-items:center;gap:.4em;background:transparent;border:1.5px solid var(--marinho);color:var(--marinho);font:600 .95rem/1 var(--f-titulo);padding:.55em 1em;border-radius:999px}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
     .hero-ctas .btn{flex:1 1 230px}
 
-    /* Bolhas de sabão decorativas */
-    .bolhas{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .bolhas span{position:absolute;left:var(--x);top:var(--y);width:var(--t);aspect-ratio:1;border-radius:50%;
-      background:radial-gradient(circle at 32% 30%,#fff 0 12%,rgba(255,255,255,.35) 13% 45%,rgba(180,210,255,.18) 70%,rgba(255,255,255,.55) 100%);
-      border:1.5px solid rgba(255,255,255,.9);box-shadow:inset -3px -4px 8px rgba(21,55,176,.10);
-      animation:boiar var(--d,7s) ease-in-out infinite;animation-delay:var(--a,0s)}
-    @keyframes boiar{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    /* Bolhas de sabão no traço do logo (estáticas, só em volta das fotos) */
+    .bolha{position:absolute;z-index:2;width:var(--t);aspect-ratio:1;border-radius:50%;background:#fff;border:2px solid var(--marinho);pointer-events:none}
+    .bolha::after{content:"";position:absolute;width:38%;height:38%;left:18%;top:16%;border-radius:50%;border:2px solid transparent;border-left-color:var(--marinho);transform:rotate(30deg)}
 
-    /* Faixa de diferenciais (círculos azuis como os destaques do Instagram) */
-    .difs{background:#fff;padding:28px 0}
-    .difs ul{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 12px;list-style:none;margin:0;padding:0}
-    .dif{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
-    .dif-ico{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:var(--azul);color:#fff;
-      box-shadow:0 0 0 3px #fff,0 0 0 6px var(--azul)}
-    .dif-ico .ico{width:38px;height:38px}
-    .dif-txt{font:600 1rem/1.25 var(--f-titulo);color:var(--marinho);max-width:15ch}
+    /* Diferenciais: círculos azuis como os destaques do Instagram */
+    .difs{background:#fff;border-block:1px solid var(--linha);padding:24px 0}
+    .difs ul{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style:none;margin:0;padding:0}
+    .dif{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+    .dif-ico{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--azul);color:#fff;
+      outline:2px solid var(--azul);outline-offset:3px}
+    .dif-ico .ico{width:30px;height:30px}
+    .dif-txt{font:600 .85rem/1.2 var(--f-titulo);color:var(--marinho);max-width:13ch}
 
-    /* Botão flutuante do WhatsApp */
-    .whats-flutuante{position:fixed;right:16px;bottom:16px;z-index:60;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
-      background:var(--whats);color:#fff;box-shadow:0 8px 22px -6px rgba(0,0,0,.35);text-decoration:none;animation:bolha 2.8s ease-in-out infinite}
-    .whats-flutuante::before{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid var(--whats);animation:onda 2.8s ease-out infinite}
-    .whats-flutuante .ico{width:34px;height:34px}
-    @keyframes bolha{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-    @keyframes onda{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.55);opacity:0}}
+    /* Botão flutuante do WhatsApp (única sombra: ele fica acima do conteúdo) */
+    .whats-flutuante{position:fixed;right:16px;bottom:16px;z-index:60;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;
+      background:var(--whats);color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25);text-decoration:none}
+    .whats-flutuante::before{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid var(--whats);animation:onda 3s ease-out infinite}
+    .whats-flutuante .ico{width:32px;height:32px}
+    @keyframes onda{0%{transform:scale(1);opacity:.6}70%,100%{transform:scale(1.45);opacity:0}}
 
-    @media (min-width:600px){.difs ul{grid-template-columns:repeat(4,1fr)}}
+    @media (min-width:600px){
+      .dif-ico{width:72px;height:72px}.dif-ico .ico{width:36px;height:36px}
+      .dif-txt{font-size:1rem}
+    }
     @media (min-width:900px){
       .cabecalho .container{height:84px}
       .cabecalho-logo img{width:74px}
-      .hero{padding:24px 0 80px}
-      .hero-grid{grid-template-columns:1.1fr .9fr;gap:40px}
+      .hero{padding:32px 0 88px}
+      .hero-grid{grid-template-columns:1.15fr .85fr;gap:48px}
       .hero-foto{order:0;width:min(100%,460px)}
       .hero-ctas .btn{flex:0 0 auto}
     }
@@ -173,13 +172,13 @@
 {
   "@context": "https://schema.org",
   "@type": "PetStore",
-  "@id": "https://petbalyen.pages.dev/#petshop",
+  "@id": "https://petshop-balyen.pages.dev/#petshop",
   "name": "Pet Balyen",
   "description": "Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!",
-  "url": "https://petbalyen.pages.dev/",
+  "url": "https://petshop-balyen.pages.dev/",
   "telephone": "+5511992959110",
-  "image": "https://petbalyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg",
-  "logo": "https://petbalyen.pages.dev/assets/img/pet-balyen-logo-512.png",
+  "image": "https://petshop-balyen.pages.dev/assets/img/pet-balyen-banho-tosa-cotia-og.jpg",
+  "logo": "https://petshop-balyen.pages.dev/assets/img/pet-balyen-logo-512.png",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
@@ -291,14 +290,6 @@
          2. HERO
          ================================================================== -->
     <section class="hero" id="topo" aria-labelledby="hero-titulo">
-      <div class="bolhas" aria-hidden="true">
-        <span style="--x:4%;--y:12%;--t:26px;--d:6s"></span>
-        <span style="--x:88%;--y:8%;--t:18px;--d:7s;--a:-2s"></span>
-        <span style="--x:80%;--y:62%;--t:34px;--d:8s;--a:-1s"></span>
-        <span style="--x:46%;--y:88%;--t:20px;--d:6.5s;--a:-3s"></span>
-        <span style="--x:12%;--y:70%;--t:14px;--d:5.5s"></span>
-        <span style="--x:56%;--y:4%;--t:12px;--d:6s;--a:-4s"></span>
-      </div>
       <div class="container hero-grid">
         <div class="hero-txt">
           <p class="hero-local"><svg class="ico" aria-hidden="true"><use href="#i-pin"></use></svg>Pet shop no Centro de Cotia – SP</p>
@@ -324,6 +315,9 @@
             <img src="assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-560.webp" width="760" height="760" fetchpriority="high" decoding="async"
                  alt="Cachorro de olhos azuis com laço rosa após o banho na Pet Balyen, em Cotia">
           </picture>
+          <span class="bolha" style="--t:26px;left:-7%;top:62%" aria-hidden="true"></span>
+          <span class="bolha" style="--t:16px;left:2%;top:80%" aria-hidden="true"></span>
+          <span class="bolha" style="--t:20px;right:4%;bottom:-2%" aria-hidden="true"></span>
           <!-- Patinho de borracha (como no logo) -->
           <svg class="hero-pato" viewBox="0 0 64 56" aria-hidden="true">
             <ellipse cx="34" cy="38" rx="26" ry="15" fill="#FFD23F"/>
@@ -349,14 +343,13 @@
          4. SERVIÇOS
          ================================================================== -->
     <section class="secao secao--rosa borda-nuvem" id="servicos" aria-labelledby="servicos-titulo">
-      <div class="container">
+      <div class="container lado">
         <header class="secao-topo">
-          <p class="mao">nossos cuidados</p>
           <h2 id="servicos-titulo" data-c="textos.servicosTitulo">Banho e tosa no Centro de Cotia</h2>
           <p data-c="textos.servicosSubtitulo">Tudo feito com calma, produtos suaves e muito chamego. Escolha o cuidado do seu bebê:</p>
         </header>
-        <ul class="cards" data-render="servicos" data-v="1d1aaw8"><!--r--><li class="card"><span class="card-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-banho"></use></svg></span><h3>Banho</h3><p>Banho caprichado com produtos suaves, secagem com carinho e aquele cheirinho de pet limpinho.</p><p class="card-preco card-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Banho%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Banho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="card"><span class="card-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tesoura"></use></svg></span><h3>Tosa</h3><p>Tosa feita com calma e paciência, no estilo que combina com o seu bebê (e com você).</p><p class="card-preco card-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Tosa%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Tosa"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="card"><span class="card-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-higienica"></use></svg></span><h3>Tosa Higiênica</h3><p>Aparamos barriguinha, patinhas e regiões íntimas para mais higiene e conforto no dia a dia.</p><p class="card-preco card-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Tosa%20Higi%C3%AAnica%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Tosa Higiênica"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="card"><span class="card-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-hidratacao"></use></svg></span><h3>Hidratação</h3><p>Pelos macios, brilhantes e fáceis de desembaraçar. Um mimo que o seu pet merece.</p><p class="card-preco card-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Hidrata%C3%A7%C3%A3o%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Hidratação"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="card card--mais"><span class="card-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chat"></use></svg></span><h3>E muito mais!</h3><p>Tem alguma dúvida ou procura outro cuidado? Pergunte pra gente 💬</p><a class="btn btn--sm btn--claro" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20tenho%20uma%20d%C3%BAvida%20sobre%20os%20servi%C3%A7os%20para%20o%20meu%20pet%20%F0%9F%92%AC" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Perguntar no WhatsApp</a></li><!--/r--></ul>
-        <p class="microtexto centro" data-c="textos.microtexto">Agendamento direto com a nossa equipe pelo WhatsApp 💙</p>
+        <ul class="servicos-lista" data-render="servicos" data-v="dw9gyb"><!--r--><li class="servico"><span class="servico-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-banho"></use></svg></span><div class="servico-txt"><h3>Banho</h3><p>Banho caprichado com produtos suaves, secagem com carinho e aquele cheirinho de pet limpinho.</p></div><p class="servico-preco servico-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--contorno btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Banho%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Banho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="servico"><span class="servico-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tesoura"></use></svg></span><div class="servico-txt"><h3>Tosa</h3><p>Tosa feita com calma e paciência, no estilo que combina com o seu bebê (e com você).</p></div><p class="servico-preco servico-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--contorno btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Tosa%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Tosa"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="servico"><span class="servico-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-higienica"></use></svg></span><div class="servico-txt"><h3>Tosa Higiênica</h3><p>Aparamos barriguinha, patinhas e regiões íntimas para mais higiene e conforto no dia a dia.</p></div><p class="servico-preco servico-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--contorno btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Tosa%20Higi%C3%AAnica%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Tosa Higiênica"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="servico"><span class="servico-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-hidratacao"></use></svg></span><div class="servico-txt"><h3>Hidratação</h3><p>Pelos macios, brilhantes e fáceis de desembaraçar. Um mimo que o seu pet merece.</p></div><p class="servico-preco servico-preco--consulta">Consulte pelo WhatsApp</p><a class="btn btn--contorno btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20Hidrata%C3%A7%C3%A3o%20para%20o%20meu%20pet%20%F0%9F%90%BE" target="_blank" rel="noopener" aria-label="Agendar este serviço: Hidratação"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar este serviço</a></li><li class="servico servico--mais"><span class="servico-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chat"></use></svg></span><div class="servico-txt"><h3>E muito mais</h3><p>Tem alguma dúvida ou procura outro cuidado? Pergunte pra gente 💬</p></div><a class="btn btn--sm" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20tenho%20uma%20d%C3%BAvida%20sobre%20os%20servi%C3%A7os%20para%20o%20meu%20pet%20%F0%9F%92%AC" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Perguntar no WhatsApp</a></li><!--/r--></ul>
+        <p class="microtexto" data-c="textos.microtexto">Agendamento direto com a nossa equipe pelo WhatsApp 💙</p>
       </div>
     </section>
 
@@ -364,12 +357,6 @@
          5. LEVA E TRAZ
          ================================================================== -->
     <section class="secao secao--azul leva" id="leva-e-traz" aria-labelledby="leva-titulo">
-      <div class="bolhas" aria-hidden="true">
-        <span style="--x:6%;--y:14%;--t:30px;--d:7s"></span>
-        <span style="--x:90%;--y:20%;--t:20px;--d:6s;--a:-2s"></span>
-        <span style="--x:84%;--y:78%;--t:38px;--d:8s;--a:-3s"></span>
-        <span style="--x:30%;--y:86%;--t:16px;--d:6s;--a:-1s"></span>
-      </div>
       <div class="container leva-grid">
         <div class="leva-txt">
           <span class="selo selo--amarelo" data-c="textos.levaTrazSelo">Sistema leva e traz</span>
@@ -395,7 +382,6 @@
     <section class="secao secao--oferta" id="oferta" aria-labelledby="oferta-titulo" data-opcional="ofertas" hidden>
       <div class="container">
         <header class="secao-topo">
-          <p class="mao">só pra você</p>
           <h2 id="oferta-titulo" data-c="textos.ofertaTitulo">Oferta especial pra você</h2>
         </header>
         <div class="ofertas" data-render="ofertas" data-v="45h"><!--r--><!--/r--></div>
@@ -404,21 +390,20 @@
 
     <!-- Seção sazonal opcional (ex.: Natal) -->
     <section class="secao sazonal" id="datas-festivas" aria-label="Datas festivas" data-opcional="sazonal">
-      <div class="container sazonal-grid" data-render="sazonal" data-v="121ha0l"><!--r--><div class="sazonal-foto"><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.avif 720w" sizes="(min-width: 800px) 340px, 70vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp 720w" sizes="(min-width: 800px) 340px, 70vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp" alt="Bully com gorro de Papai Noel e bandana natalina, sorrindo após o banho na Pet Balyen, em Cotia" width="720" height="720" loading="lazy" decoding="async"></picture></div><div class="sazonal-txt"><span class="selo selo--roxo">Datas festivas</span><h2>O Natal está chegando! 🎄</h2><p>Que tal deixar o seu bebê cheiroso e lindo para as fotos de fim de ano com a família? Garanta o banho dele antes das festas.</p><a class="btn" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20o%20banho%20de%20Natal%20do%20meu%20pet%20%F0%9F%8E%84%F0%9F%90%BE" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar o banho de Natal</a></div><!--/r--></div>
+      <div class="container sazonal-grid" data-render="sazonal" data-v="1ejzs2c"><!--r--><div class="sazonal-foto"><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.avif 720w" sizes="(min-width: 800px) 340px, 70vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp 720w" sizes="(min-width: 800px) 340px, 70vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp" alt="Bully com gorro de Papai Noel e bandana natalina, sorrindo após o banho na Pet Balyen, em Cotia" width="720" height="720" loading="lazy" decoding="async"></picture></div><div class="sazonal-txt"><span class="selo selo--roxo">Datas festivas</span><h2>O Natal está chegando</h2><p>Que tal deixar o seu bebê cheiroso e lindo para as fotos de fim de ano com a família? Garanta o banho dele antes das festas.</p><a class="btn" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20o%20banho%20de%20Natal%20do%20meu%20pet%20%F0%9F%8E%84%F0%9F%90%BE" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-whats"></use></svg>Agendar o banho de Natal</a></div><!--/r--></div>
     </section>
 
     <!-- ==================================================================
          7. GALERIA "FAMÍLIA BALYEN"
          ================================================================== -->
-    <section class="secao secao--rosa borda-nuvem" id="familia-balyen" aria-labelledby="galeria-titulo">
+    <section class="secao" id="familia-balyen" aria-labelledby="galeria-titulo">
       <div class="container">
         <header class="secao-topo">
-          <p class="mao">#FamíliaBalyen</p>
           <h2 id="galeria-titulo" data-c="textos.galeriaTitulo">Família Balyen</h2>
           <p data-c="textos.galeriaSubtitulo">Alguns dos bebês que passaram por aqui (e saíram ainda mais lindos).</p>
         </header>
-        <ul class="galeria" data-render="galeria" data-v="1h509fo"><!--r--><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 100vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 100vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.webp" alt="Filhote caramelo com bandana rosa e strass na testa, de língua de fora após o banho na Pet Balyen" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Sorriso de quem acabou de sair do banho 🐾</figcaption></figure></li><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria-720.webp" alt="Cachorro tricolor de olhos azuis com laço rosa, sentado e feliz depois do banho e tosa em Cotia" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Olhos azuis e laço rosa: pronta pra arrasar 💙</figcaption></figure></li><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-bully-natal-720.webp" alt="Bully com gorro de Papai Noel e bandana natalina, sorrindo na Pet Balyen" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Cheiroso e no clima de Natal 🎄</figcaption></figure></li><!--/r--></ul>
-        <div class="centro">
+        <ul class="galeria" data-render="galeria" data-v="sqjgsi"><!--r--><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 100vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 100vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-filhote-caramelo-720.webp" alt="Filhote caramelo com bandana rosa e strass na testa, de língua de fora após o banho na Pet Balyen" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Sorriso de quem acabou de sair do banho 🐾</figcaption></figure></li><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-samoieda-bandana-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-samoieda-bandana-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-samoieda-bandana-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-samoieda-bandana-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-samoieda-bandana-720.webp" alt="Cachorro branco peludo com bandana xadrez vermelha, sorrindo após o banho na Pet Balyen, em Cotia" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Branquinho, fofinho e de bandana nova</figcaption></figure></li><li class="galeria-item"><figure><picture><source type="image/avif" srcset="assets/img/banho-tosa-cotia-pet-balyen-shih-tzu-sofa-400.avif 400w, assets/img/banho-tosa-cotia-pet-balyen-shih-tzu-sofa-720.avif 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><source type="image/webp" srcset="assets/img/banho-tosa-cotia-pet-balyen-shih-tzu-sofa-400.webp 400w, assets/img/banho-tosa-cotia-pet-balyen-shih-tzu-sofa-720.webp 720w" sizes="(min-width: 900px) 340px, (min-width: 600px) 33vw, 50vw"><img src="assets/img/banho-tosa-cotia-pet-balyen-shih-tzu-sofa-720.webp" alt="Cachorrinho de pelo claro com bandana colorida, deitado no sofá e de língua de fora depois do banho e tosa na Pet Balyen" width="720" height="720" loading="lazy" decoding="async"></picture><figcaption>Banho tomado, agora é só relaxar no sofá</figcaption></figure></li><!--/r--></ul>
+        <div class="acoes">
           <a class="btn btn--contorno" href="https://www.instagram.com/petbalyen/" data-href="loja.instagram" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-insta"></use></svg><span data-c="textos.galeriaBotao">Ver mais no Instagram</span>
           </a>
@@ -432,11 +417,10 @@
     <section class="secao" id="bastidores" aria-labelledby="videos-titulo">
       <div class="container">
         <header class="secao-topo">
-          <p class="mao">bastidores do banho</p>
           <h2 id="videos-titulo" data-c="textos.videosTitulo">Veja com quanto carinho cuidamos de cada pet</h2>
           <p data-c="textos.videosSubtitulo">Bastidores do banho e da secagem, do jeitinho que acontece aqui.</p>
         </header>
-        <ul class="reels" data-render="videos" data-v="r3ulyu"><!--r--><li class="reel"><div class="reel-video"><video muted loop playsinline preload="none" width="405" height="720" poster="assets/img/bastidores-banho-pet-balyen-cotia-poster.webp" aria-label="Vídeo do banho de um pastor-alemão na Pet Balyen" data-webm="assets/video/bastidores-banho-pet-balyen-cotia.webm" data-mp4="assets/video/bastidores-banho-pet-balyen-cotia.mp4"></video><button class="reel-som" type="button" aria-pressed="false" data-ligar="Ativar som" data-desligar="Desativar som" aria-label="Ativar som"><svg class="ico ico-mudo" aria-hidden="true" focusable="false"><use href="#i-mudo"></use></svg><svg class="ico ico-som" aria-hidden="true" focusable="false"><use href="#i-som"></use></svg></button></div><p class="reel-titulo">Hora do banho 🛁</p></li><li class="reel"><div class="reel-video"><video muted loop playsinline preload="none" width="405" height="720" poster="assets/img/bastidores-secagem-pet-balyen-cotia-poster.webp" aria-label="Vídeo do banho e da secagem de um cachorrinho de pelo longo na Pet Balyen" data-webm="assets/video/bastidores-secagem-pet-balyen-cotia.webm" data-mp4="assets/video/bastidores-secagem-pet-balyen-cotia.mp4"></video><button class="reel-som" type="button" aria-pressed="false" data-ligar="Ativar som" data-desligar="Desativar som" aria-label="Ativar som"><svg class="ico ico-mudo" aria-hidden="true" focusable="false"><use href="#i-mudo"></use></svg><svg class="ico ico-som" aria-hidden="true" focusable="false"><use href="#i-som"></use></svg></button></div><p class="reel-titulo">Banho, secagem e bandana 💙</p></li><!--/r--></ul>
+        <ul class="reels" data-render="videos" data-v="gq0ete"><!--r--><li class="reel"><div class="reel-video"><video muted loop playsinline preload="none" width="405" height="720" poster="assets/img/bastidores-banho-pet-balyen-cotia-poster.webp" aria-label="Vídeo do banho de um pastor-alemão na Pet Balyen" data-webm="assets/video/bastidores-banho-pet-balyen-cotia.webm" data-mp4="assets/video/bastidores-banho-pet-balyen-cotia.mp4"></video><button class="reel-som" type="button" aria-pressed="false" data-ligar="Ativar som" data-desligar="Desativar som" aria-label="Ativar som"><svg class="ico ico-mudo" aria-hidden="true" focusable="false"><use href="#i-mudo"></use></svg><svg class="ico ico-som" aria-hidden="true" focusable="false"><use href="#i-som"></use></svg></button></div><p class="reel-titulo">Hora do banho</p></li><li class="reel"><div class="reel-video"><video muted loop playsinline preload="none" width="405" height="720" poster="assets/img/bastidores-secagem-pet-balyen-cotia-poster.webp" aria-label="Vídeo do banho e da secagem de um cachorrinho de pelo longo na Pet Balyen" data-webm="assets/video/bastidores-secagem-pet-balyen-cotia.webm" data-mp4="assets/video/bastidores-secagem-pet-balyen-cotia.mp4"></video><button class="reel-som" type="button" aria-pressed="false" data-ligar="Ativar som" data-desligar="Desativar som" aria-label="Ativar som"><svg class="ico ico-mudo" aria-hidden="true" focusable="false"><use href="#i-mudo"></use></svg><svg class="ico ico-som" aria-hidden="true" focusable="false"><use href="#i-som"></use></svg></button></div><p class="reel-titulo">Banho, secagem e bandana</p></li><!--/r--></ul>
       </div>
     </section>
 
@@ -469,10 +453,10 @@
       <div class="container">
         <header class="secao-topo">
           <p class="nota-google"><svg class="ico" aria-hidden="true"><use href="#i-estrela"></use></svg><strong data-c="loja.notaGoogle">5,0</strong> no Google · <span data-c="loja.totalAvaliacoes">+130</span> avaliações</p>
-          <h2 id="depo-titulo" data-c="textos.depoimentosTitulo">Quem confia, recomenda 💙</h2>
+          <h2 id="depo-titulo" data-c="textos.depoimentosTitulo">Quem confia, recomenda</h2>
         </header>
         <ul class="depos" data-render="depoimentos" data-v="1r37h0e"><!--r--><li class="depo"><blockquote><p>“Meus pets voltaram simplesmente perfeitos, cheirosos e muito bem cuidados. Trabalho impecável, feito com muito carinho e dedicação.”</p></blockquote><p class="depo-fonte"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-estrela"></use></svg>Avaliação no Google</p></li><li class="depo"><blockquote><p>“Meu cachorro tinha ‘fama’ de ser bravo no antigo pet; no Balyen, quando chegamos, ele estava até dormindo. Fora que os pets ficam livres e à vontade no local.”</p></blockquote><p class="depo-fonte"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-estrela"></use></svg>Avaliação no Google</p></li><li class="depo"><blockquote><p>“Atendimento maravilhoso, desde o início até a entrega do nosso animalzinho. Muito atenciosa, sinalizou alguns cuidados.”</p></blockquote><p class="depo-fonte"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-estrela"></use></svg>Avaliação no Google</p></li><li class="depo"><blockquote><p>“A Chanel vinha tomando banho em outro pet shop e acabou ficando traumatizada… fiquei realmente muito feliz com a experiência.”</p></blockquote><p class="depo-fonte"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-estrela"></use></svg>Avaliação no Google</p></li><!--/r--></ul>
-        <div class="centro">
+        <div class="acoes">
           <a class="btn btn--contorno" href="https://www.google.com/maps/search/?api=1&amp;query=Pet+Balyen+Cotia" data-href="loja.mapsAvaliacoes" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-estrela"></use></svg><span data-c="textos.depoimentosBotao">Ver todas as avaliações no Google</span>
           </a>
@@ -483,12 +467,12 @@
     <!-- ==================================================================
          11. VOCÊ SABIA?
          ================================================================== -->
-    <section class="secao secao--rosa borda-nuvem" id="voce-sabia" aria-labelledby="sabia-titulo">
+    <section class="secao" id="voce-sabia" aria-labelledby="sabia-titulo">
       <div class="container">
         <header class="secao-topo">
           <h2 id="sabia-titulo" class="titulo-mao" data-c="textos.curiosidadesTitulo">Você sabia?</h2>
         </header>
-        <ul class="sabias" data-render="curiosidades" data-v="k3t1pq"><!--r--><li class="sabia"><span class="sabia-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-banho"></use></svg></span><h3>Banho demais também não é bom</h3><p>A frequência ideal depende da raça, da pelagem e da rotina do pet. Banhos em excesso podem ressecar a pele, por isso o equilíbrio é tudo.</p></li><li class="sabia"><span class="sabia-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-higienica"></use></svg></span><h3>Tosa higiênica é saúde</h3><p>Aparar os pelos da barriga, das partes íntimas e entre os dedinhos evita acúmulo de sujeira e umidade, ajuda a prevenir assaduras e até escorregões.</p></li><li class="sabia"><span class="sabia-ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gota"></use></svg></span><h3>A pele do pet é diferente da nossa</h3><p>Ela é mais fina e tem outro pH, por isso shampoo de gente não é indicado. Produtos próprios para pets (e hipoalergênicos para os sensíveis) fazem toda a diferença.</p></li><!--/r--></ul>
+        <ul class="sabias" data-render="curiosidades" data-v="ehi3u4"><!--r--><li class="sabia"><span class="sabia-num" aria-hidden="true">01</span><h3>Banho demais também não é bom</h3><p>A frequência ideal depende da raça, da pelagem e da rotina do pet. Banhos em excesso podem ressecar a pele, por isso o equilíbrio é tudo.</p></li><li class="sabia"><span class="sabia-num" aria-hidden="true">02</span><h3>Tosa higiênica é saúde</h3><p>Aparar os pelos da barriga, das partes íntimas e entre os dedinhos evita acúmulo de sujeira e umidade, ajuda a prevenir assaduras e até escorregões.</p></li><li class="sabia"><span class="sabia-num" aria-hidden="true">03</span><h3>A pele do pet é diferente da nossa</h3><p>Ela é mais fina e tem outro pH, por isso shampoo de gente não é indicado. Produtos próprios para pets (e hipoalergênicos para os sensíveis) fazem toda a diferença.</p></li><!--/r--></ul>
       </div>
     </section>
 
@@ -498,11 +482,10 @@
     <section class="secao" id="como-agendar" aria-labelledby="passos-titulo">
       <div class="container">
         <header class="secao-topo">
-          <p class="mao">é rapidinho</p>
           <h2 id="passos-titulo" data-c="textos.passosTitulo">Como agendar</h2>
         </header>
-        <ol class="passos" data-render="passos" data-v="yctc7n"><!--r--><li class="passo"><span class="passo-num" aria-hidden="true">1</span><h3>Clique em &quot;Agendar&quot;</h3><p>Você cai direto no nosso WhatsApp, com a mensagem prontinha.</p></li><li class="passo"><span class="passo-num" aria-hidden="true">2</span><h3>Combine dia e horário</h3><p>Nossa equipe confirma o melhor horário para o seu bebê.</p></li><li class="passo"><span class="passo-num" aria-hidden="true">3</span><h3>Traga seu pet</h3><p>Ou use o leva e traz: a gente busca e devolve em casa.</p></li><!--/r--></ol>
-        <div class="centro">
+        <ol class="passos" data-render="passos" data-v="18dycg3"><!--r--><li class="passo"><span class="passo-num" aria-hidden="true">01</span><h3>Clique em &quot;Agendar&quot;</h3><p>Você cai direto no nosso WhatsApp, com a mensagem prontinha.</p></li><li class="passo"><span class="passo-num" aria-hidden="true">02</span><h3>Combine dia e horário</h3><p>Nossa equipe confirma o melhor horário para o seu bebê.</p></li><li class="passo"><span class="passo-num" aria-hidden="true">03</span><h3>Traga seu pet</h3><p>Ou use o leva e traz: a gente busca e devolve em casa.</p></li><!--/r--></ol>
+        <div class="acoes">
           <a class="btn btn--lg" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio%20para%20o%20meu%20pet%20%F0%9F%90%BE" data-wa="padrao" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-whats"></use></svg><span data-c="textos.passosCta">Já agendou o banho? 🛁</span>
           </a>
@@ -514,10 +497,9 @@
     <!-- ==================================================================
          13. PERGUNTAS FREQUENTES (acordeão nativo com <details>)
          ================================================================== -->
-    <section class="secao secao--rosa borda-nuvem" id="perguntas" aria-labelledby="faq-titulo">
-      <div class="container estreito">
+    <section class="secao secao--rosa" id="perguntas" aria-labelledby="faq-titulo">
+      <div class="container lado">
         <header class="secao-topo">
-          <p class="mao">ficou com dúvida?</p>
           <h2 id="faq-titulo" data-c="textos.faqTitulo">Perguntas frequentes</h2>
         </header>
         <div class="faq" data-render="faq" data-v="wtq31b"><!--r--><details class="faq-item"><summary>Quanto tempo leva o banho?<svg class="ico faq-seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></summary><p>Depende do porte, da pelagem e do serviço escolhido. Quando você agenda pelo WhatsApp, a nossa equipe já passa a previsão certinha para o seu pet.</p></details><details class="faq-item"><summary>Vocês atendem gatos?<svg class="ico faq-seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></summary><p>Nosso logo tem um gatinho por um motivo 🐱 Chama a gente no WhatsApp para saber quais cuidados estão disponíveis para o seu gato.</p></details><details class="faq-item"><summary>Como funciona o leva e traz?<svg class="ico faq-seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></summary><p>Nossa equipe busca o seu pet em casa no horário combinado e devolve depois do banho, cheiroso e feliz. Consulte a disponibilidade e as condições para o seu bairro pelo WhatsApp.</p></details><details class="faq-item"><summary>Que produtos vocês usam?<svg class="ico faq-seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></summary><p>Usamos produtos hipoalergênicos da linha Hydra, mais suaves para a pele do seu pet. Se o seu bebê tem alguma sensibilidade, é só avisar a nossa equipe.</p></details><details class="faq-item"><summary>Precisa agendar?<svg class="ico faq-seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></summary><p>Sim! Trabalhamos com horário marcado para dar toda a atenção que o seu bebê merece. É só chamar no WhatsApp e combinar o melhor dia.</p></details><!--/r--></div>
@@ -530,7 +512,6 @@
     <section class="secao" id="localizacao" aria-labelledby="local-titulo">
       <div class="container local-grid">
         <div>
-          <p class="mao">venha nos visitar</p>
           <h2 id="local-titulo" data-c="textos.localTitulo">Pet shop no Centro de Cotia</h2>
           <address class="endereco">
             <svg class="ico" aria-hidden="true"><use href="#i-pin"></use></svg>
@@ -574,15 +555,11 @@
          15. CTA FINAL
          ================================================================== -->
     <section class="cta-final" aria-labelledby="final-titulo">
-      <div class="bolhas" aria-hidden="true">
-        <span style="--x:5%;--y:20%;--t:34px;--d:7s"></span>
-        <span style="--x:16%;--y:70%;--t:18px;--d:6s;--a:-2s"></span>
-        <span style="--x:86%;--y:16%;--t:24px;--d:8s;--a:-1s"></span>
-        <span style="--x:92%;--y:66%;--t:40px;--d:7.5s;--a:-3s"></span>
-        <span style="--x:60%;--y:84%;--t:14px;--d:6s"></span>
-      </div>
-      <div class="container centro">
-        <h2 id="final-titulo" data-c="textos.finalTitulo">Seu pet merece esse carinho 💙</h2>
+      <span class="bolha" style="--t:44px;left:6%;top:22%" aria-hidden="true"></span>
+      <span class="bolha" style="--t:20px;left:12%;top:58%" aria-hidden="true"></span>
+      <span class="bolha" style="--t:28px;right:8%;top:30%" aria-hidden="true"></span>
+      <div class="container cta-final-conteudo">
+        <h2 id="final-titulo" data-c="textos.finalTitulo">Seu pet merece esse carinho</h2>
         <p data-c="textos.finalTexto">Chama a gente no WhatsApp e garanta o horário do seu bebê.</p>
         <a class="btn btn--lg btn--branco" href="https://api.whatsapp.com/send?phone=5511992959110&amp;text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio%20para%20o%20meu%20pet%20%F0%9F%90%BE" data-wa="padrao" target="_blank" rel="noopener">
           <svg class="ico" aria-hidden="true"><use href="#i-whats"></use></svg><span data-c="textos.finalCta">Agendar pelo WhatsApp</span>

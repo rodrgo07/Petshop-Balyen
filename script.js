@@ -48,7 +48,7 @@ const CONFIG = {
      2) SEO — ✏️ CONFIRMAR o endereço final do site depois de publicar
      ------------------------------------------------------------------ */
   seo: {
-    url: 'https://petbalyen.pages.dev/',   // ✏️ PREENCHER: troque pelo domínio definitivo
+    url: 'https://petshop-balyen.pages.dev/',   // ✏️ PREENCHER: troque pelo domínio definitivo
     titulo: 'Pet Balyen | Banho e Tosa em Cotia – SP | Leva e Traz',
     descricao: 'Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!',
   },
@@ -83,7 +83,7 @@ const CONFIG = {
     servicosSubtitulo: 'Tudo feito com calma, produtos suaves e muito chamego. Escolha o cuidado do seu bebê:',
     servicoBotao: 'Agendar este serviço',
     servicoSemPreco: 'Consulte pelo WhatsApp',
-    maisTitulo: 'E muito mais!',
+    maisTitulo: 'E muito mais',
     maisTexto: 'Tem alguma dúvida ou procura outro cuidado? Pergunte pra gente 💬',
     maisBotao: 'Perguntar no WhatsApp',
 
@@ -110,7 +110,7 @@ const CONFIG = {
     produtosTitulo: 'Produtos hipoalergênicos, suaves para a pele',
     produtosTexto: 'Usamos produtos hipoalergênicos Hydra, mais suaves para a pele do seu pet. Ideal para os bebês mais sensíveis.',
 
-    depoimentosTitulo: 'Quem confia, recomenda 💙',
+    depoimentosTitulo: 'Quem confia, recomenda',
     depoimentosSelo: 'Avaliação no Google',
     depoimentosBotao: 'Ver todas as avaliações no Google',
 
@@ -127,7 +127,7 @@ const CONFIG = {
     localVerMapa: 'Ver mapa',
     localHoje: 'Hoje',
 
-    finalTitulo: 'Seu pet merece esse carinho 💙',
+    finalTitulo: 'Seu pet merece esse carinho',
     finalTexto: 'Chama a gente no WhatsApp e garanta o horário do seu bebê.',
     finalCta: 'Agendar pelo WhatsApp',
   },
@@ -215,7 +215,7 @@ const CONFIG = {
   sazonal: {
     ativo: true,
     selo: 'Datas festivas',
-    titulo: 'O Natal está chegando! 🎄',
+    titulo: 'O Natal está chegando',
     texto: 'Que tal deixar o seu bebê cheiroso e lindo para as fotos de fim de ano com a família? Garanta o banho dele antes das festas.',
     imagem: 'banho-tosa-cotia-pet-balyen-bully-natal',
     alt: 'Bully com gorro de Papai Noel e bandana natalina, sorrindo após o banho na Pet Balyen, em Cotia',
@@ -234,14 +234,14 @@ const CONFIG = {
       legenda: 'Sorriso de quem acabou de sair do banho 🐾',
     },
     {
-      imagem: 'banho-tosa-cotia-pet-balyen-cachorro-olhos-azuis-galeria',
-      alt: 'Cachorro tricolor de olhos azuis com laço rosa, sentado e feliz depois do banho e tosa em Cotia',
-      legenda: 'Olhos azuis e laço rosa: pronta pra arrasar 💙',
+      imagem: 'banho-tosa-cotia-pet-balyen-samoieda-bandana',
+      alt: 'Cachorro branco peludo com bandana xadrez vermelha, sorrindo após o banho na Pet Balyen, em Cotia',
+      legenda: 'Branquinho, fofinho e de bandana nova',
     },
     {
-      imagem: 'banho-tosa-cotia-pet-balyen-bully-natal',
-      alt: 'Bully com gorro de Papai Noel e bandana natalina, sorrindo na Pet Balyen',
-      legenda: 'Cheiroso e no clima de Natal 🎄',
+      imagem: 'banho-tosa-cotia-pet-balyen-shih-tzu-sofa',
+      alt: 'Cachorrinho de pelo claro com bandana colorida, deitado no sofá e de língua de fora depois do banho e tosa na Pet Balyen',
+      legenda: 'Banho tomado, agora é só relaxar no sofá',
     },
   ],
 
@@ -251,12 +251,12 @@ const CONFIG = {
   videos: [
     {
       arquivo: 'bastidores-banho-pet-balyen-cotia',
-      titulo: 'Hora do banho 🛁',
+      titulo: 'Hora do banho',
       descricao: 'Vídeo do banho de um pastor-alemão na Pet Balyen',
     },
     {
       arquivo: 'bastidores-secagem-pet-balyen-cotia',
-      titulo: 'Banho, secagem e bandana 💙',
+      titulo: 'Banho, secagem e bandana',
       descricao: 'Vídeo do banho e da secagem de um cachorrinho de pelo longo na Pet Balyen',
     },
   ],
@@ -411,28 +411,29 @@ const R = {
 
   servicos(c) {
     const t = c.textos;
-    const cards = c.servicos.map((s) => {
+    const linhas = c.servicos.map((s) => {
       const msg = s.mensagem || c.mensagens.servico.replace('{servico}', s.nome);
-      const preco = s.preco
-        ? '<p class="card-preco">' + esc(s.preco) + '</p>'
-        : '<p class="card-preco card-preco--consulta">' + esc(t.servicoSemPreco) + '</p>';
-      return '<li class="card">' +
-        '<span class="card-ico">' + icone(s.icone) + '</span>' +
-        '<h3>' + esc(s.nome) + '</h3>' +
-        '<p>' + esc(s.descricao) + '</p>' +
-        preco +
-        '<a class="btn btn--sm" href="' + esc(linkWhats(msg, c)) + '" ' + EXT + ' aria-label="' + esc(t.servicoBotao + ': ' + s.nome) + '">' +
+      return '<li class="servico">' +
+        '<span class="servico-ico">' + icone(s.icone) + '</span>' +
+        '<div class="servico-txt">' +
+          '<h3>' + esc(s.nome) + '</h3>' +
+          '<p>' + esc(s.descricao) + '</p>' +
+        '</div>' +
+        '<p class="servico-preco' + (s.preco ? '' : ' servico-preco--consulta') + '">' + esc(s.preco || t.servicoSemPreco) + '</p>' +
+        '<a class="btn btn--contorno btn--sm" href="' + esc(linkWhats(msg, c)) + '" ' + EXT + ' aria-label="' + esc(t.servicoBotao + ': ' + s.nome) + '">' +
           icone('whats') + esc(t.servicoBotao) + '</a>' +
       '</li>';
     }).join('');
-    const mais = '<li class="card card--mais">' +
-      '<span class="card-ico">' + icone('chat') + '</span>' +
-      '<h3>' + esc(t.maisTitulo) + '</h3>' +
-      '<p>' + esc(t.maisTexto) + '</p>' +
-      '<a class="btn btn--sm btn--claro" href="' + esc(linkWhats(c.mensagens.duvida, c)) + '" ' + EXT + '>' +
+    const mais = '<li class="servico servico--mais">' +
+      '<span class="servico-ico">' + icone('chat') + '</span>' +
+      '<div class="servico-txt">' +
+        '<h3>' + esc(t.maisTitulo) + '</h3>' +
+        '<p>' + esc(t.maisTexto) + '</p>' +
+      '</div>' +
+      '<a class="btn btn--sm" href="' + esc(linkWhats(c.mensagens.duvida, c)) + '" ' + EXT + '>' +
         icone('whats') + esc(t.maisBotao) + '</a>' +
     '</li>';
-    return cards + mais;
+    return linhas + mais;
   },
 
   levaETrazInfo(c) {
@@ -508,9 +509,9 @@ const R = {
   },
 
   curiosidades(c) {
-    return c.curiosidades.map((q) =>
+    return c.curiosidades.map((q, i) =>
       '<li class="sabia">' +
-        '<span class="sabia-ico">' + icone(q.icone || 'pata') + '</span>' +
+        '<span class="sabia-num" aria-hidden="true">0' + (i + 1) + '</span>' +
         '<h3>' + esc(q.titulo) + '</h3>' +
         '<p>' + esc(q.texto) + '</p>' +
       '</li>').join('');
@@ -519,7 +520,7 @@ const R = {
   passos(c) {
     return c.passos.map((p, i) =>
       '<li class="passo">' +
-        '<span class="passo-num" aria-hidden="true">' + (i + 1) + '</span>' +
+        '<span class="passo-num" aria-hidden="true">0' + (i + 1) + '</span>' +
         '<h3>' + esc(p.titulo) + '</h3>' +
         '<p>' + esc(p.texto) + '</p>' +
       '</li>').join('');
