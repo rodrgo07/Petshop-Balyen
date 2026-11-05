@@ -1,0 +1,250 @@
+/* ==========================================================================
+   PET BALYEN — style.css
+   Estilos das seções abaixo da primeira tela.
+   (Cores, fontes, botões, cabeçalho e hero estão no <style> do index.html.)
+   ========================================================================== */
+
+/* ---------- Estrutura das seções ---------- */
+.secao{position:relative;padding:64px 0}
+.secao--rosa{background:var(--rosa-100)}
+.secao--roxo-claro{background:var(--roxo-100)}
+.secao-topo{text-align:center;max-width:640px;margin:0 auto 36px}
+.secao-topo h2{font-size:clamp(1.8rem,5.4vw,2.6rem)}
+.secao-topo p{color:var(--texto-suave);font-size:1.0625rem}
+.centro{text-align:center}
+.centro .btn{margin-top:28px}
+.estreito{max-width:780px}
+
+/* Borda de "nuvem" no topo da seção (bolinhas, como o contorno do logo) */
+.borda-nuvem::before{content:"";position:absolute;left:0;right:0;top:-21px;height:22px;
+  background:radial-gradient(circle at 50% 100%,var(--rosa-100) 70%,transparent 71%) 0 0/44px 44px repeat-x}
+
+/* Pequeno destaque em fonte manuscrita (como nos posts) */
+.mao{font:600 1.45rem/1 var(--f-mao);color:var(--roxo);margin:0 0 .25em}
+.titulo-mao{font-family:var(--f-mao)!important;font-weight:600!important;font-size:clamp(2.6rem,9vw,3.6rem)!important;color:var(--marinho)}
+
+/* ---------- Variações de botão e selos ---------- */
+.btn--sm{min-height:46px;font-size:1rem;padding:.6em 1.2em}
+.btn--claro{background:#fff;color:var(--azul);box-shadow:0 5px 0 var(--rosa-300);border:2px solid var(--azul)}
+.btn--branco{background:#fff;color:var(--azul);box-shadow:0 5px 0 rgba(0,0,0,.25)}
+.btn--branco:hover{box-shadow:0 7px 0 rgba(0,0,0,.25)}
+.btn--roxo{background:var(--roxo);box-shadow:0 5px 0 #431D7A}
+.btn--roxo:hover{box-shadow:0 7px 0 #431D7A}
+.selo--roxo{background:var(--roxo);border-color:var(--roxo);color:#fff}
+.selo--roxo .ico{width:1.1em;height:1.1em}
+.selo--amarelo{background:var(--amarelo);border-color:var(--amarelo);color:var(--marinho)}
+
+/* ---------- 4. Serviços ---------- */
+.cards{display:grid;gap:20px;list-style:none;margin:0;padding:0}
+.card{position:relative;display:flex;flex-direction:column;align-items:flex-start;background:#fff;border-radius:var(--raio);padding:28px 24px 24px;box-shadow:var(--sombra)}
+.card h3{font-size:1.6rem;margin:14px 0 .3em}
+.card p{color:var(--texto-suave)}
+.card .btn{margin-top:auto;width:100%}
+.card-ico{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--azul);color:#fff;box-shadow:0 0 0 3px #fff,0 0 0 6px var(--azul)}
+.card-ico .ico{width:32px;height:32px}
+.card-preco{font:600 1.1rem/1.2 var(--f-titulo);color:var(--marinho)!important;margin:0 0 16px}
+.card-preco--consulta{font-size:1rem;color:var(--roxo)!important}
+.card--mais{background:var(--marinho);color:#fff}
+.card--mais h3{color:#fff}
+.card--mais p{color:#E4E8FF}
+.card--mais .card-ico{background:var(--amarelo);color:var(--marinho);box-shadow:0 0 0 3px var(--marinho),0 0 0 6px var(--amarelo)}
+.card--mais .btn{--foco:#fff}
+.card--mais{--foco:#fff}
+#servicos .microtexto{margin-top:24px}
+
+/* ---------- 5. Leva e traz ---------- */
+.secao--azul{background:var(--azul);color:#fff;overflow:hidden;--foco:#fff}
+.secao--azul h2{color:#fff;font-size:clamp(1.9rem,5.6vw,2.7rem);margin-top:.5em}
+.secao--azul p{color:#E6EBFF;font-size:1.0625rem}
+.secao--azul .microtexto{color:#D9E0FF}
+.leva-grid{position:relative;display:grid;gap:36px;align-items:center}
+.leva-info{list-style:none;margin:0 0 26px;padding:0}
+.leva-info li{display:flex;gap:.6em;align-items:flex-start;background:rgba(255,255,255,.12);border:1.5px dashed rgba(255,255,255,.55);border-radius:18px;padding:12px 16px;margin-bottom:10px}
+.leva-info .ico{color:var(--amarelo);margin-top:1px}
+.leva-passos{display:grid;gap:14px;list-style:none;margin:0;padding:0;counter-reset:leva}
+.leva-passos li{display:flex;align-items:center;gap:16px;background:#fff;color:var(--marinho);border-radius:999px;padding:10px 24px 10px 10px;font:600 1.15rem/1.2 var(--f-titulo);box-shadow:0 8px 0 rgba(10,20,70,.25)}
+.leva-ico{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--rosa-100);color:var(--azul);flex:none}
+.leva-ico .ico{width:30px;height:30px}
+.leva-passos li:nth-child(2){margin-left:18px}
+.leva-passos li:nth-child(3){margin-left:36px}
+
+/* ---------- 6. Oferta ---------- */
+.secao--oferta{background:linear-gradient(180deg,var(--rosa-50),var(--roxo-100))}
+.ofertas{display:grid;gap:22px;max-width:880px;margin:0 auto}
+.oferta{position:relative;overflow:hidden;background:#fff;border:3px solid var(--roxo);border-radius:var(--raio);padding:28px 24px;text-align:center;box-shadow:var(--sombra)}
+.oferta::after{content:"";position:absolute;width:140px;height:140px;right:-50px;top:-50px;border-radius:50%;background:var(--roxo-100)}
+.oferta>*{position:relative;z-index:1}
+.oferta h3{font-size:1.5rem;margin:16px 0 .2em}
+.oferta-beneficio{font:800 clamp(1.5rem,5vw,2rem)/1.15 var(--f-titulo);color:var(--roxo);margin-bottom:.4em}
+.oferta-detalhe{color:var(--texto-suave)}
+.oferta-validade{display:inline-flex;align-items:center;gap:.4em;background:var(--amarelo);color:var(--marinho);font:600 1rem/1 var(--f-titulo);padding:.5em 1em;border-radius:999px}
+.oferta .btn{display:flex;margin-top:8px}
+
+/* ---------- Sazonal ---------- */
+.sazonal{background:#fff}
+.sazonal-grid{display:grid;gap:28px;align-items:center;justify-items:center;text-align:center}
+.sazonal-foto{width:min(72vw,320px);border-radius:50%;overflow:hidden;box-shadow:0 0 0 8px #fff,0 0 0 12px var(--roxo),var(--sombra)}
+.sazonal-foto img{aspect-ratio:1;object-fit:cover;width:100%}
+.sazonal h2{font-size:clamp(1.8rem,5.4vw,2.5rem);margin-top:.5em}
+.sazonal p{color:var(--texto-suave);font-size:1.0625rem;max-width:46ch}
+
+/* ---------- 7. Galeria (estilo feed do Instagram) ---------- */
+.galeria{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;list-style:none;margin:0;padding:0}
+.galeria-item:first-child{grid-column:1/-1}
+.galeria figure{margin:0;position:relative;border-radius:var(--raio);overflow:hidden;background:#fff;box-shadow:var(--sombra)}
+.galeria img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .5s ease}
+.galeria figure:hover img{transform:scale(1.04)}
+.galeria figcaption{color:var(--marinho);
+  font:600 .98rem/1.3 var(--f-titulo);padding:.7em 1em .85em}
+
+/* ---------- 8. Reels ---------- */
+.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:0 -20px;padding:4px 20px 18px;scrollbar-width:thin}
+.reel{flex:0 0 72%;max-width:320px;scroll-snap-align:center}
+.reel-video{position:relative;border-radius:var(--raio);overflow:hidden;background:var(--marinho);box-shadow:var(--sombra);aspect-ratio:9/16}
+.reel video{width:100%;height:100%;object-fit:cover}
+.reel-som{position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:48px;height:48px;border:0;border-radius:50%;
+  background:rgba(20,33,94,.75);color:#fff;cursor:pointer;--foco:#fff}
+.reel-som .ico-som{display:none}
+.reel-som[aria-pressed="true"] .ico-som{display:block}
+.reel-som[aria-pressed="true"] .ico-mudo{display:none}
+.reel-titulo{font:600 1.1rem/1.3 var(--f-titulo);color:var(--marinho);text-align:center;margin:12px 0 0}
+
+/* ---------- 9. Produtos ---------- */
+.produtos-grid{display:grid;gap:24px;justify-items:center;text-align:center;max-width:860px}
+.selo-redondo{width:170px}
+.selo-redondo .giro{transform-origin:100px 100px;animation:girar 30s linear infinite}
+
+@keyframes girar{to{transform:rotate(360deg)}}
+.produtos h2{font-size:clamp(1.7rem,5vw,2.3rem);margin-top:.5em}
+.produtos-txt{font-size:1.125rem;color:var(--texto)}
+
+/* ---------- 10. Depoimentos ---------- */
+.nota-google{display:inline-flex;align-items:center;gap:.4em;background:#fff;border-radius:999px;padding:.5em 1.1em;color:var(--marinho)!important;font:600 1.05rem/1 var(--f-titulo);box-shadow:var(--sombra)}
+.nota-google .ico{color:#F5A400}
+.depos{display:grid;gap:18px;list-style:none;margin:0;padding:0}
+.depo{position:relative;background:#fff;border-radius:var(--raio);padding:30px 24px 22px;box-shadow:var(--sombra);border-top:6px solid var(--rosa-300)}
+.depo blockquote{margin:0}
+.depo blockquote p{font-size:1.0625rem;color:var(--texto)}
+.depo-fonte{display:flex;align-items:center;gap:.4em;font:600 .95rem/1 var(--f-titulo);color:var(--azul);margin:0}
+.depo-fonte .ico{color:#F5A400;width:1.2em;height:1.2em}
+
+/* ---------- 11. Você sabia? ---------- */
+.sabias{display:grid;gap:18px;list-style:none;margin:0;padding:0}
+.sabia{position:relative;background:#fff;border-radius:var(--raio);padding:28px 24px;box-shadow:var(--sombra);overflow:hidden}
+.sabia::after{content:"";position:absolute;right:-14px;bottom:-14px;width:90px;height:90px;opacity:.08;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%2314215E'%3E%3Cpath d='M12 11.2c2.9 0 5.6 3.4 5.6 6.1 0 1.9-1.6 2.6-3 2.3-1-.2-1.7-.6-2.6-.6s-1.6.4-2.6.6c-1.4.3-3-.4-3-2.3 0-2.7 2.7-6.1 5.6-6.1z'/%3E%3Cellipse cx='5.2' cy='10.4' rx='1.9' ry='2.3'/%3E%3Cellipse cx='9' cy='6.2' rx='2' ry='2.5'/%3E%3Cellipse cx='15' cy='6.2' rx='2' ry='2.5'/%3E%3Cellipse cx='18.8' cy='10.4' rx='1.9' ry='2.3'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.sabia-ico{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--rosa-100);color:var(--azul);margin-bottom:12px}
+.sabia-ico .ico{width:28px;height:28px}
+.sabia h3{font-size:1.35rem}
+.sabia p{color:var(--texto-suave);margin:0}
+
+/* ---------- 12. Como agendar ---------- */
+.passos{display:grid;gap:18px;list-style:none;margin:0;padding:0}
+.passo{position:relative;background:#fff;border:2px solid var(--rosa-100);border-radius:var(--raio);padding:26px 22px 22px 88px;box-shadow:var(--sombra)}
+.passo-num{position:absolute;left:20px;top:22px;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--azul);color:#fff;font:800 1.6rem/1 var(--f-titulo)}
+.passo h3{font-size:1.3rem;margin-bottom:.25em}
+.passo p{color:var(--texto-suave);margin:0}
+
+/* ---------- 13. FAQ ---------- */
+.faq-item{background:#fff;border-radius:22px;margin-bottom:12px;box-shadow:0 6px 18px -12px rgba(20,33,94,.35)}
+.faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:14px 20px;cursor:pointer;
+  font:600 1.15rem/1.3 var(--f-titulo);color:var(--marinho);list-style:none;border-radius:22px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-seta{color:var(--azul);transition:transform .2s}
+.faq-item[open] .faq-seta{transform:rotate(180deg)}
+.faq-item p{padding:0 20px 18px;margin:0;color:var(--texto-suave)}
+
+/* ---------- 14. Localização ---------- */
+.local-grid{display:grid;gap:32px;align-items:start}
+.local-grid h2{font-size:clamp(1.8rem,5.4vw,2.5rem)}
+.endereco{display:flex;gap:.6em;font-style:normal;font-size:1.0625rem;margin-bottom:22px}
+.endereco .ico{color:var(--azul);margin-top:2px}
+.horarios-titulo{display:flex;align-items:center;gap:.4em;font-size:1.25rem}
+.horarios-titulo .ico{color:var(--azul)}
+.horarios{width:100%;border-collapse:separate;border-spacing:0 6px;margin-bottom:22px}
+.horarios th,.horarios td{padding:12px 16px;background:#fff;text-align:left;font-size:1rem}
+.horarios th{font-weight:600;border-radius:14px 0 0 14px}
+.horarios td{text-align:right;border-radius:0 14px 14px 0;font-weight:700;color:var(--marinho)}
+.horarios tr.is-hoje th,.horarios tr.is-hoje td{background:var(--azul);color:#fff}
+.tag-hoje{display:inline-block;background:var(--amarelo);color:var(--marinho);font-size:.75rem;font-weight:700;padding:.15em .6em;border-radius:999px;vertical-align:middle;margin-left:.3em}
+.local-botoes{display:flex;flex-wrap:wrap;gap:14px}
+.mapa{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:300px;border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);background:#EAF0FF}
+.mapa-desenho{position:absolute;inset:0;width:100%;height:100%}
+.mapa-pino{position:relative;display:grid;place-items:center;width:58px;height:58px;
+  border-radius:50% 50% 50% 0;background:var(--azul);color:#fff;rotate:-45deg;box-shadow:var(--sombra)}
+.mapa-pino .ico{rotate:45deg;width:28px;height:28px}
+.mapa-botao{position:relative}
+.mapa.is-carregado{display:block}
+.mapa iframe{display:block;width:100%;height:100%;min-height:340px;border:0}
+
+/* ---------- 15. CTA final ---------- */
+.cta-final{position:relative;overflow:hidden;background:var(--azul);color:#fff;padding:72px 0 80px;--foco:#fff}
+.cta-final h2{color:#fff;font-size:clamp(2rem,6.4vw,3rem)}
+.cta-final p{color:#E6EBFF;font-size:1.125rem}
+.cta-final .microtexto{color:#D9E0FF}
+.cta-final .btn{margin-top:8px}
+
+/* ---------- 16. Rodapé ---------- */
+.rodape{background:var(--marinho);color:#DCE2FF;padding:48px 0 100px;font-size:.98rem;--foco:#fff}
+.rodape-grid{display:grid;gap:28px}
+.rodape-marca img{width:110px;margin-bottom:10px}
+.rodape-titulo{color:#fff;font-size:1.2rem;margin-bottom:.5em}
+.rodape address{font-style:normal}
+.rodape a{color:#fff;text-decoration:none}
+.rodape a:hover{text-decoration:underline}
+.rodape-links,.rodape-horarios{list-style:none;margin:0;padding:0}
+.rodape-links a{display:inline-flex;align-items:center;gap:.5em;min-height:44px}
+.rodape-horarios li{padding:3px 0}
+.rodape-horarios span{display:inline-block;min-width:9.5em;color:#fff}
+.rodape-copy{text-align:center;margin:36px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.15)}
+
+/* ---------- Telas maiores ---------- */
+@media (min-width:600px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .galeria{grid-template-columns:repeat(3,1fr);gap:18px}
+  .galeria-item:first-child{grid-column:auto}
+  .depos{grid-template-columns:repeat(2,1fr)}
+  .rodape-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:900px){
+  .secao{padding:96px 0}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .leva-grid{grid-template-columns:1.1fr .9fr;gap:56px}
+  .ofertas{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .sazonal-grid{grid-template-columns:auto 1fr;justify-items:start;text-align:left;gap:56px;max-width:960px}
+  .reels{justify-content:center;overflow:visible;margin:0;padding:0}
+  .reel{flex:0 0 300px}
+  .produtos-grid{grid-template-columns:auto 1fr;justify-items:start;text-align:left;gap:48px}
+  .selo-redondo{width:200px}
+  .sabias,.passos{grid-template-columns:repeat(3,1fr)}
+  .passo{padding:84px 24px 26px}
+  .passo-num{top:22px;left:24px}
+  .local-grid{grid-template-columns:1fr 1fr;gap:56px}
+  .mapa{min-height:100%;align-self:stretch}
+  .rodape{padding-bottom:56px}
+  .rodape-grid{grid-template-columns:1.3fr 1fr 1fr 1.2fr}
+}
+@media (min-width:1100px){
+  .cards{grid-template-columns:repeat(4,1fr)}
+
+
+}
+
+@media (prefers-reduced-motion:reduce){
+  .galeria figure:hover img{transform:none}
+}
+
+/* Card "E muito mais!" vira uma faixa horizontal a partir do tablet */
+@media (min-width:600px){
+  .card--mais{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"ico titulo botao" "ico texto botao";
+    column-gap:22px;align-items:center;padding:24px 28px}
+  .card--mais .card-ico{grid-area:ico}
+  .card--mais h3{grid-area:titulo;margin:0}
+  .card--mais p{grid-area:texto;margin:0}
+  .card--mais .btn{grid-area:botao;width:auto;margin:0}
+}
+
+/* Nome da loja ao lado do logo no rodapé */
+.rodape-logo{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.rodape-logo img{margin-bottom:0}
+.rodape .marca-nome{color:#fff;font-size:1.7rem}
