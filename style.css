@@ -11,7 +11,7 @@
      um salão), não em cards. Cards só onde há agrupamento real (oferta).
    - Cantos: pílula só em botões e selos; 10px em fotos/vídeos; 4px em
      painéis; reto no resto. Sem sombras decorativas.
-   - Bolhas e nuvem vêm do desenho do logo, sempre estáticas.
+   - Bolhas e nuvem vêm do desenho do logo. Só se movem junto com a rolagem.
    ========================================================================== */
 
 /* ---------- Estrutura das seções ---------- */
@@ -254,8 +254,63 @@
 .nota-google{display:inline-block;line-height:1.3;max-width:100%}
 .nota-google .ico{display:inline-block;vertical-align:-.25em;margin-right:.3em}
 
-/* Natal: centralizado até o desktop */
+/* Até o desktop tudo fica no eixo central da tela. Só continuam alinhadas à esquerda
+   as listas em linhas de largura total (serviços, passos, FAQ, depoimentos, horários),
+   onde o texto corrido lê melhor assim. */
 @media (max-width:899px){
+  /* Títulos de seção e botões soltos */
+  .secao-topo{margin-inline:auto;text-align:center}
+  .secao-topo p{margin-inline:auto}
+  .acoes,#servicos .microtexto{text-align:center}
+
+  /* Natal */
   .sazonal-grid{justify-items:center;text-align:center}
   .sazonal p{margin-inline:auto}
+
+  /* Leva e traz */
+  .leva-txt{text-align:center}
+  .secao--azul p{margin-inline:auto}
+  .leva-info{margin-inline:auto;text-align:left}
+  .leva-passos{width:fit-content;margin-inline:auto}
+
+  /* Galeria e vídeos: o primeiro vídeo já abre no centro */
+  .galeria figcaption,.reel-titulo{text-align:center}
+  .reels{padding-inline:calc(50vw - min(36vw,160px))}
+  .reel{flex:0 0 min(72vw,320px);max-width:none;scroll-snap-align:center}
+
+  /* Produtos */
+  .produtos-grid{justify-items:center;text-align:center}
+  .produtos-txt{margin-inline:auto}
+
+  /* Localização */
+  .local-grid h2{text-align:center}
+  .endereco,.horarios-titulo{justify-content:center}
+  .local-botoes .btn{flex:1 1 200px}
+
+  /* Rodapé */
+  .rodape-grid{text-align:center}
+  .rodape-logo{justify-content:center}
+  .rodape-horarios span{min-width:0;margin-right:.4em}
+}
+
+/* ---------- Animações no scroll ---------- */
+/* Entrada dos blocos: as classes são colocadas pelo script.js, então sem JS nada fica escondido */
+.revela{opacity:0;transform:translateY(26px);transition:opacity .65s ease var(--atraso,0s),transform .65s cubic-bezier(.2,.7,.2,1) var(--atraso,0s)}
+.revela--foto{transform:scale(.93)}
+.revela.is-visivel{opacity:1;transform:none}
+
+/* Rota do leva e traz: a linha tracejada "anda" até a próxima parada */
+.leva-passos li.revela::after{transform:scaleY(0);transform-origin:top;transition:transform .5s ease calc(var(--atraso,0s) + .3s)}
+.leva-passos li.is-visivel::after{transform:scaleY(1)}
+
+/* Ligados à rolagem: acompanham o dedo. Navegador sem suporte mostra tudo parado. */
+@supports (animation-timeline:view()){
+  .selo-redondo .giro{transform-origin:100px 100px;animation:girar linear both;animation-timeline:view()}
+  .bolha,.hero-pato{animation:flutuar linear both;animation-timeline:view()}
+}
+@keyframes girar{to{transform:rotate(280deg)}}
+@keyframes flutuar{from{transform:translateY(34px)}to{transform:translateY(-34px)}}
+
+@media print{
+  .revela{opacity:1!important;transform:none!important}
 }

@@ -126,7 +126,7 @@
     .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
     .hero-ctas .btn{flex:1 1 230px}
 
-    /* Bolhas de sabão no traço do logo (estáticas, só em volta das fotos) */
+    /* Bolhas de sabão no traço do logo (só em volta das fotos; movimento no style.css) */
     .bolha{position:absolute;z-index:2;width:var(--t);aspect-ratio:1;border-radius:50%;background:#fff;border:2px solid var(--marinho);pointer-events:none}
     .bolha::after{content:"";position:absolute;width:38%;height:38%;left:18%;top:16%;border-radius:50%;border:2px solid transparent;border-left-color:var(--marinho);transform:rotate(30deg)}
 
@@ -160,6 +160,12 @@
       .dif-ico{width:72px;height:72px}.dif-ico .ico{width:36px;height:36px}
       .dif-txt{font-size:1rem}
     }
+    /* Até o desktop, o texto do hero fica no eixo central da tela */
+    @media (max-width:899px){
+      .hero-txt{text-align:center}
+      .hero-sub{margin-inline:auto}
+      .selos{justify-content:center}
+    }
     @media (min-width:900px){
       .cabecalho .container{height:84px}
       .cabecalho-logo img{width:74px}
@@ -173,9 +179,9 @@
     }
   </style>
   <!-- Resto do CSS sem bloquear a renderização -->
-  <link rel="preload" href="style.css?v=5" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="style.css?v=5"></noscript>
-  <script src="script.js?v=5" defer></script>
+  <link rel="preload" href="style.css?v=6" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css?v=6"></noscript>
+  <script src="script.js?v=6" defer></script>
 
   <!-- Dados estruturados (gerados a partir do CONFIG pelo ferramentas/pre-render.js) -->
   <script type="application/ld+json" id="dados-estruturados">

@@ -722,6 +722,41 @@ if (typeof document !== 'undefined') {
     /* 7) Ano no rodapé */
     const ano = document.getElementById('ano');
     if (ano) ano.textContent = new Date().getFullYear();
+
+    /* 8) Animações de entrada no scroll
+       O que já está na tela ao abrir a página não anima (evita "piscar").
+       Quem aparece junto entra em sequência; depois a classe sai para não
+       interferir nos efeitos de hover dos botões. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const blocos = [
+        '.dif', '.secao-topo', '.acoes', '#servicos .microtexto', '.servico', '.leva-txt > *', '.leva-passos li',
+        '.oferta', '.sazonal-grid > div', '.produtos-grid > div:not(.selo-redondo)', '.depo', '.sabia',
+        '.passo', '.faq-item', '.local-grid > div:not(.mapa) > *', '.cta-final-conteudo > *', '.rodape-grid > *'
+      ];
+      const imagens = ['.galeria-item', '.reel', '.selo-redondo', '.mapa'];
+      const ioRevela = new IntersectionObserver((entradas) => {
+        entradas.filter((e) => e.isIntersecting).forEach((e, i) => {
+          const el = e.target;
+          const atraso = Math.min(i, 5) * 90;
+          ioRevela.unobserve(el);
+          el.style.setProperty('--atraso', atraso + 'ms');
+          el.classList.add('is-visivel');
+          setTimeout(() => {
+            el.classList.remove('revela', 'revela--foto', 'is-visivel');
+            el.style.removeProperty('--atraso');
+          }, atraso + 1000);
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      const preparar = (seletores, classes) => {
+        document.querySelectorAll(seletores.join(',')).forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight) return;
+          el.classList.add(...classes);
+          ioRevela.observe(el);
+        });
+      };
+      preparar(blocos, ['revela']);
+      preparar(imagens, ['revela', 'revela--foto']);
+    }
   })();
 }
 
