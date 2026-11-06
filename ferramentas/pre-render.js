@@ -11,8 +11,14 @@ const path = require('path');
 
 const raiz = path.join(__dirname, '..');
 const { CONFIG, R, jsonLd, linkWhats, pegar, esc, hash } = require(path.join(raiz, 'script.js'));
+const assert = require('assert');
 const arquivo = path.join(raiz, 'index.html');
 let html = fs.readFileSync(arquivo, 'utf8');
+
+// Autoteste: a seção sazonal some depois da data e aparece antes dela
+const sazonalCom = (ate) => R.sazonal({ ...CONFIG, sazonal: { ...CONFIG.sazonal, ativo: true, titulo: 'x', ate } });
+assert.strictEqual(sazonalCom('2000-01-01'), '');
+assert.notStrictEqual(sazonalCom('2999-01-01'), '');
 
 // 1) Blocos gerados (serviços, FAQ, galeria…)
 html = html.replace(/data-render="(\w+)"(?: data-v="[^"]*")?([^>]*)><!--r-->[\s\S]*?<!--\/r-->/g, (m, nome, resto) => {
@@ -48,6 +54,13 @@ html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, (m, a, b) => 
 html = html.replace(/(<meta (?:property|name)="(?:og|twitter):image" content=")[^"]*?(assets\/img\/[^"]+")/g, (m, a, b) => a + esc(s.url) + b);
 html = html.replace(/(<script type="application\/ld\+json" id="dados-estruturados">)[\s\S]*?(<\/script>)/,
   (m, a, b) => a + '\n' + jsonLd(CONFIG).replace(/<\//g, '<\\/') + '\n  ' + b);
+
+// Não grava nada se o HTML citar uma foto ou vídeo que não existe (ex.: nome errado no CONFIG)
+const faltando = [...new Set(html.match(/assets\/[\w\/.-]+\.\w+/g))].filter((f) => !fs.existsSync(path.join(raiz, f)));
+if (faltando.length) {
+  console.error('❌ Arquivos não encontrados:\n  ' + faltando.join('\n  '));
+  process.exit(1);
+}
 
 fs.writeFileSync(arquivo, html);
 

@@ -10,12 +10,15 @@
      ser confirmados pela loja.
    • Deixar um campo vazio ('') é seguro: o site esconde ou troca por um
      texto padrão (ex.: preço vazio → "Consulte pelo WhatsApp").
-   • Depois de editar, (opcional, recomendado) rode no terminal:
+   • Depois de editar, rode no terminal:
          node ferramentas/pre-render.js
-     Isso grava os novos textos direto no index.html (melhor para o Google
-     e para quem abre o site com internet lenta). Se não rodar, o site se
-     atualiza sozinho pelo navegador do mesmo jeito.
+     Isso grava os novos textos direto no index.html. Os textos visíveis se
+     atualizam sozinhos no navegador, mas o título, a descrição, os dados para
+     o Google (horário, telefone, endereço) e o sitemap só mudam com esse comando.
    ========================================================================== */
+
+// Nota no Google: mude só aqui, ela aparece em vários textos
+const NOTA = '5,0';
 
 const CONFIG = {
   /* ------------------------------------------------------------------
@@ -40,7 +43,7 @@ const CONFIG = {
     mapsAvaliacoes: 'https://www.google.com/maps/search/?api=1&query=Pet+Balyen+Cotia',
     mapsComoChegar: 'https://www.google.com/maps/dir/?api=1&destination=Pet+Balyen,+Rua+Guido+Fecchio,+125+-+Centro,+Cotia+-+SP,+06700-105',
     mapsEmbed: 'https://www.google.com/maps?q=Pet+Balyen,+Rua+Guido+Fecchio,+125,+Cotia+-+SP&z=16&output=embed',
-    notaGoogle: '5,0',
+    notaGoogle: NOTA,
     totalAvaliacoes: '+130',
   },
 
@@ -50,7 +53,7 @@ const CONFIG = {
   seo: {
     url: 'https://petshop-balyen.pages.dev/',   // ✏️ PREENCHER: troque pelo domínio definitivo
     titulo: 'Pet Balyen | Banho e Tosa em Cotia – SP | Leva e Traz',
-    descricao: 'Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota 5,0 no Google. Agende pelo WhatsApp!',
+    descricao: `Petshop humanizado no Centro de Cotia. Banho, tosa, tosa higiênica e hidratação com leva e traz. Nota ${NOTA} no Google. Agende pelo WhatsApp!`,
   },
 
   /* ------------------------------------------------------------------
@@ -68,13 +71,15 @@ const CONFIG = {
      4) TEXTOS DAS SEÇÕES
      ------------------------------------------------------------------ */
   textos: {
+    pular: 'Pular para o conteúdo',
     agendarTopo: 'Agendar',
     microtexto: 'Agendamento direto com a nossa equipe pelo WhatsApp 💙',
     botaoFlutuante: 'Agendar pelo WhatsApp',
 
+    heroLocal: 'Pet shop no Centro de Cotia – SP',
     heroTitulo: 'Banho e Tosa em Cotia com carinho de família',
     heroSubtitulo: 'Petshop humanizado: cuidamos do seu bebê como se fosse nosso.',
-    heroSeloNota: '⭐ 5,0 no Google',
+    heroSeloNota: `⭐ ${NOTA} no Google`,
     heroSeloLevaTraz: '🚐 Leva e traz',
     heroCta: 'Agendar pelo WhatsApp',
     heroCta2: 'Conhecer os serviços',
@@ -105,6 +110,8 @@ const CONFIG = {
     videosSubtitulo: 'Bastidores do banho e da secagem, do jeitinho que acontece aqui.',
     videoSomLigar: 'Ativar som',
     videoSomDesligar: 'Desativar som',
+    videoPausar: 'Pausar vídeo',
+    videoTocar: 'Reproduzir vídeo',
 
     produtosSelo: 'Hipoalergênico',
     produtosTitulo: 'Produtos hipoalergênicos, suaves para a pele',
@@ -117,7 +124,7 @@ const CONFIG = {
     curiosidadesTitulo: 'Você sabia?',
 
     passosTitulo: 'Como agendar',
-    passosCta: 'Já agendou o banho? 🛁',
+    passosCta: 'Agendar o banho 🛁',
 
     faqTitulo: 'Perguntas frequentes',
 
@@ -130,6 +137,10 @@ const CONFIG = {
     finalTitulo: 'Seu pet merece esse carinho',
     finalTexto: 'Chama a gente no WhatsApp e garanta o horário do seu bebê.',
     finalCta: 'Agendar pelo WhatsApp',
+
+    rodapeOnde: 'Onde estamos',
+    rodapeFale: 'Fale com a gente',
+    rodapeHorarios: 'Horários',
   },
 
   /* ------------------------------------------------------------------
@@ -211,9 +222,11 @@ const CONFIG = {
 
   /* ------------------------------------------------------------------
      9) SEÇÃO SAZONAL (opcional) — ativo: false para esconder
+     ate: 'AAAA-MM-DD' (opcional) → some sozinha depois dessa data
      ------------------------------------------------------------------ */
   sazonal: {
     ativo: true,
+    ate: '2026-12-25',
     selo: 'Datas festivas',
     titulo: 'O Natal está chegando',
     texto: 'Que tal deixar o seu bebê cheiroso e lindo para as fotos de fim de ano com a família? Garanta o banho dele antes das festas.',
@@ -412,7 +425,7 @@ const R = {
   servicos(c) {
     const t = c.textos;
     const linhas = c.servicos.map((s) => {
-      const msg = s.mensagem || c.mensagens.servico.replace('{servico}', s.nome);
+      const msg = s.mensagem || c.mensagens.servico.replace('{servico}', s.nome.toLowerCase());
       return '<li class="servico">' +
         '<span class="servico-ico">' + icone(s.icone) + '</span>' +
         '<div class="servico-txt">' +
@@ -460,6 +473,7 @@ const R = {
   sazonal(c) {
     const s = c.sazonal;
     if (!s || !s.ativo || !s.titulo) return '';
+    if (s.ate && new Date() > new Date(s.ate + 'T23:59:59-03:00')) return '';
     return '<div class="sazonal-foto">' +
         foto(s.imagem, s.alt, '(min-width: 800px) 340px, 70vw') +
       '</div>' +
@@ -491,6 +505,10 @@ const R = {
           '<video muted loop playsinline preload="none" width="405" height="720" ' +
             'poster="assets/img/' + esc(v.arquivo) + '-poster.webp" aria-label="' + esc(v.descricao) + '" ' +
             'data-webm="assets/video/' + esc(v.arquivo) + '.webm" data-mp4="assets/video/' + esc(v.arquivo) + '.mp4"></video>' +
+          '<button class="reel-pausa" type="button" ' +
+            'data-pausar="' + esc(t.videoPausar) + '" data-tocar="' + esc(t.videoTocar) + '" aria-label="' + esc(t.videoTocar) + '">' +
+            icone('tocar', 'ico ico-tocar') + icone('pausa', 'ico ico-pausa') +
+          '</button>' +
           '<button class="reel-som" type="button" aria-pressed="false" ' +
             'data-ligar="' + esc(t.videoSomLigar) + '" data-desligar="' + esc(t.videoSomDesligar) + '" aria-label="' + esc(t.videoSomLigar) + '">' +
             icone('mudo', 'ico ico-mudo') + icone('som', 'ico ico-som') +
@@ -676,7 +694,7 @@ if (typeof document !== 'undefined') {
           const v = e.target;
           if (e.isIntersecting) {
             carregar(v);
-            if (!reduzMovimento || v.dataset.usuario) v.play().catch(() => {});
+            if ((!reduzMovimento || v.dataset.usuario) && !v.dataset.pausado) v.play().catch(() => {});
           } else if (!v.paused) {
             v.pause();
           }
@@ -696,8 +714,27 @@ if (typeof document !== 'undefined') {
           b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', b.dataset.ligar);
         });
         if (ligar) {
-          v.muted = false; v.dataset.usuario = '1'; v.play().catch(() => {});
+          v.muted = false; v.dataset.usuario = '1'; delete v.dataset.pausado; v.play().catch(() => {});
           btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', btn.dataset.desligar);
+        }
+      });
+    });
+
+    // Botão de pausa: a escolha da pessoa vale mesmo ao rolar a página e voltar
+    $$('.reel-pausa').forEach((btn) => {
+      const v = btn.parentElement.querySelector('video');
+      const mostrar = (tocando) => {
+        btn.classList.toggle('is-tocando', tocando);
+        btn.setAttribute('aria-label', tocando ? btn.dataset.pausar : btn.dataset.tocar);
+      };
+      v.addEventListener('play', () => mostrar(true));
+      v.addEventListener('pause', () => mostrar(false));
+      btn.addEventListener('click', () => {
+        if (v.paused) {
+          delete v.dataset.pausado; v.dataset.usuario = '1';
+          carregar(v); v.play().catch(() => {});
+        } else {
+          v.dataset.pausado = '1'; v.pause();
         }
       });
     });
